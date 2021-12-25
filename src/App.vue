@@ -23,7 +23,7 @@ export default Vue.extend({
         users_list: [],
         messages: []
       } as DataType,
-      socket: null as null | WebSocket
+      socket: null as null | WebSocket,
     }
   },
   created() {
