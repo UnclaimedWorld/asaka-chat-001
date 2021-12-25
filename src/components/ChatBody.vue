@@ -48,7 +48,7 @@
           id: number,
           user_id: number,
           avatar_url: string,
-          created_at: Date,
+          created_at: string,
           messages: Array<MessageType>,
         }>;
 
