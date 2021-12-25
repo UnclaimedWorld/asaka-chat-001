@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <chat-window :data="chatData" @submit="sendMessage"/>
+    <chat-window :data="chatData" :disabled="isDisabled" @submit="sendMessage"/>
   </div>
 </template>
 
@@ -24,6 +24,7 @@ export default Vue.extend({
         messages: []
       } as DataType,
       socket: null as null | WebSocket,
+      isDisabled: true
     }
   },
   created() {
@@ -46,6 +47,7 @@ export default Vue.extend({
       const socket = new WebSocket('wss://asaka-chat-socket-01.herokuapp.com/');
       this.socket = socket;
       socket.onopen = () => {
+        this.isDisabled = false;
         socket.onmessage = ({ data }) => {
           const parsed = JSON.parse(data);
           if(parsed.users_list) {

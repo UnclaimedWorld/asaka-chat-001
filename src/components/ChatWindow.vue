@@ -9,6 +9,7 @@
     <div class="chat-window__container chat-window__body">
       <div class="chat-window__messages">
         <img v-if="disabled" class="chat-window__loading" src="../assets/icons/loading.svg" alt="">
+        <div v-else-if="!data.messages.length" class="chat-window__no-messages">Oops, here is nothing. You can type your message first.</div>
         <chat-body v-else :messages="data.messages" :users-list="data.users_list" :me="data.me"/>
       </div>
       <chat-form class="chat-window__form" @submit="sendMessage"/>
@@ -32,12 +33,10 @@
       UserAvatarPreloader,
     },
     props: {
-      data: Object as PropType<DataType>
+      data: Object as PropType<DataType>,
+      disabled: Boolean
     },
     computed: {
-      disabled() {
-        return !this.data.messages.length;
-      },
       companionData(): UserType {
         return this.data.users_list.find(user => user.id === this.data.user_id) || {
           id: -1,
@@ -97,6 +96,11 @@
     position: relative;
     height: 100vh;
     padding-top: 110px;
+    &__no-messages {
+      font-size: 18px;
+      line-height: 21px;
+      margin: 24px 0;
+    }
     &__container {
       max-width: 762px;
       padding-left: 20px;
