@@ -94,7 +94,6 @@
   .chat-window {
     border-radius: 6px;
     position: relative;
-    height: 100vh;
     padding-top: 110px;
     &__no-messages {
       font-size: 18px;

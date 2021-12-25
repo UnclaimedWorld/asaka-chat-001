@@ -26,3 +26,6 @@ body {
   box-sizing: border-box;
   outline: none;
 }
+html, body, #app, .chat-window {
+  height: 100%;
+}
