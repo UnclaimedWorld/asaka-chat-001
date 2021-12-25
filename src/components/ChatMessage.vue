@@ -2,20 +2,20 @@
   <div class="chat-message" :class="{ 'chat-message--me': userMe }">
     <div>
       <div class="chat-message__wrap">
-        <p class="chat-message__text">{{ data.message }}</p>
+        <p class="chat-message__text" data-test="text-1">{{ data.message }}</p>
         <button class="chat-message__more" type="button">
           <img src="../assets/icons/more-horizontal.svg" alt="">
         </button>
         <img v-if="userMe" :src="readIcon" alt="" class="chat-message__read-icon">
       </div>
-      <p v-if="dateVisible" class="chat-message__date">{{ data.created_at | parseDate }}</p>
+      <p v-if="dateVisible" class="chat-message__date" data-test="text-2">{{ data.created_at | parseDate }}</p>
     </div>
   </div>
 </template>
 <script lang="ts">
   import Vue, {PropType} from 'vue';
-  import {MessageType} from "@/types/chat-types";
-  import {parseMessageDate} from "@/plugins/helpers/date";
+  import {MessageType} from "../types/chat-types";
+  import {parseMessageDate} from "../plugins/helpers/date";
 
   export default Vue.extend({
     name: 'ChatMessage',
@@ -56,6 +56,7 @@
       padding: 14px 21px 17px;
       color: #fff;
       max-width: 520px;
+      word-break: break-all;
     }
     &__date {
       width: 100%;

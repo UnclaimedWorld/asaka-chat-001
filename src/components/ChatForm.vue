@@ -1,6 +1,15 @@
 <template>
-  <form class="chat-form" @submit.prevent="submit">
-    <textarea v-model="text" class="chat-form__input" placeholder="Type a message here" autofocus></textarea>
+  <form class="chat-form" @submit.prevent="submit" data-test="form-1">
+    <textarea
+      :value="text"
+      class="chat-form__input"
+      placeholder="Type a message here"
+      autofocus
+      data-test="input-1"
+      :style="{ height: height + 'px' }"
+      ref="input"
+      @input="onInput"
+    ></textarea>
     <div class="chat-form__buttons-wrap">
       <button class="chat-button" type="submit">
         <img src="../assets/icons/navigation.svg" alt="">
@@ -13,8 +22,11 @@
   export default Vue.extend({
     name: 'ChatForm',
     data() {
+      const defaultHeight = 89;
       return {
-        text: ''
+        text: '',
+        height: defaultHeight,
+        defaultHeight
       }
     },
     mounted() {
@@ -25,10 +37,23 @@
       })
     },
     methods: {
+      async checkHeight() {
+        this.height = this.defaultHeight;
+        await this.$nextTick();
+        this.height = Math.min((this.$refs.input as HTMLTextAreaElement).scrollHeight, 220);
+      },
+      async onInput(e: InputEvent) {
+        if(e.target) {
+          const value = (e.target as HTMLTextAreaElement).value;
+          this.checkHeight();
+          this.text = value;
+        }
+      },
       submit() {
         if(!this.text) return;
         this.$emit('submit', this.text);
         this.text = '';
+        this.checkHeight();
       }
     }
   });
@@ -38,6 +63,7 @@
   .chat-form {
     border-top: 2px solid rgba(112, 124, 151, 0.1);
     position: relative;
+    min-height: 91px;
     &__input {
       $placeholder-color: rgba(112, 124, 151, 0.5);
       background-color: transparent;

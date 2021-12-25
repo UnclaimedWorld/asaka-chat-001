@@ -18,7 +18,7 @@
 <script lang="ts">
   import Vue, {PropType} from 'vue';
   import ChatForm from "./ChatForm.vue";
-  import {DataType, UserType} from "@/types/chat-types";
+  import {DataType, UserType} from "../types/chat-types";
   const ChatBody = () => import('./ChatBody.vue');
   const UserAvatar = () => import("./UserAvatar.vue");
   const UserAvatarPreloader = () => import("./UserAvatarPreloader.vue");
@@ -138,7 +138,6 @@
       left: 0;
       right: 0;
       width: 100%;
-      height: 91px;
       background-color: #fff;
     }
     @media(max-width: $m-mobile) {

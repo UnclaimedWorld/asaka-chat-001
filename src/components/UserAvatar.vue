@@ -10,7 +10,7 @@
 <script lang="ts">
   import Vue, {PropType} from 'vue';
   import {UserType} from "../types/chat-types";
-  import {parseHeaderDate} from "@/plugins/helpers/date";
+  import {parseHeaderDate} from "../plugins/helpers/date";
   export default Vue.extend({
     name: 'UserAvatar',
     props: {
