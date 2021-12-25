@@ -116,7 +116,7 @@
       border-bottom: 2px solid rgba(112, 124, 151, 0.1);
     }
     &__body {
-      height: calc(100% - 110px);
+      height: 100%;
       display: flex;
       flex-direction: column;
     }
@@ -145,9 +145,6 @@
         margin-left: -20px;
         margin-right: -20px;
         width: calc(100% + 40px);
-      }
-      &__body {
-        height: calc(100% - 88px);
       }
     }
   }
