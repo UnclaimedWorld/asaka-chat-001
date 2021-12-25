@@ -36,7 +36,7 @@ export default Vue.extend({
   },
   methods: {
     createSocket() {
-      const socket = new WebSocket('ws://asaka-chat-socket-01.herokuapp.com/');
+      const socket = new WebSocket('wss://asaka-chat-socket-01.herokuapp.com/');
       this.socket = socket;
       socket.onopen = () => {
         socket.onmessage = ({ data }) => {
